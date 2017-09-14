@@ -8,3 +8,6 @@
 
 * Add in login routes
 * Add in login form
+
+* Add logout Route
+* Add is loggedIn middleware
