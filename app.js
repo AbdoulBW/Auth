@@ -24,7 +24,7 @@ app.use(passport.session());
 
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
-
+passport.use(new localStrategy(User.authenticate()))
 // ROUTES
 
 app.get('/', function (req,res) {
@@ -60,6 +60,20 @@ app.post('/register', function (req,res) {
     
 })
 
+
+//login form
+app.get('/login', function (req,res) {
+    res.render("login")
+})
+
+//login logic
+//middleware
+app.post('/login',passport.authenticate("local",{
+    successRedirect:"/secret",
+    failureRedirect:"/login"
+}), function(req,res){
+
+})
 
 app.listen(3000, function () {
     console.log("App started")
